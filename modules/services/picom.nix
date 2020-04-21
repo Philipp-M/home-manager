@@ -27,6 +27,7 @@ let
     # blur
     blur-background         = true;
     blur-background-exclude = ${toJSON cfg.blurExclude};
+    blur-method             = ${toJSON cfg.blurMethod};
   '' + ''
 
     # opacity
@@ -59,6 +60,17 @@ in {
       default = false;
       description = ''
         Enable background blur on transparent windows.
+      '';
+    };
+
+    blurMethod = mkOption {
+      type = types.str;
+      default = "kernel";
+      description = ''
+        The algorithm used for background bluring. Available choices are:
+        'none' to disable, 'gaussian', 'box' or 'kernel' for custom
+        convolution blur with --blur-kern.
+        Note: 'gaussian' and 'box' require --experimental-backends.
       '';
     };
 
