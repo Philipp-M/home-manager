@@ -28,6 +28,7 @@ let
     blur-background         = true;
     blur-background-exclude = ${toJSON cfg.blurExclude};
     blur-method             = ${toJSON cfg.blurMethod};
+    blur-strength           = ${toJSON cfg.blurStrength};
   '' + ''
 
     # opacity
@@ -71,6 +72,14 @@ in {
         'none' to disable, 'gaussian', 'box' or 'kernel' for custom
         convolution blur with --blur-kern.
         Note: 'gaussian' and 'box' require --experimental-backends.
+      '';
+    };
+
+    blurStrength = mkOption {
+      type = types.int;
+      default = 5;
+      description = ''
+        The strength level of the 'dual_kawase' blur method.
       '';
     };
 
